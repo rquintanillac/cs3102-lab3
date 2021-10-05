@@ -41,7 +41,7 @@ TEST(ConcurrencyTest, BasicTest) {
   }
 
   EXPECT_EQ(instancia.getNumKeys(), num_points);
-  EXPECT_EQ(instancia.getMaxHeight(), 1);
+  EXPECT_TRUE(instancia.isBalanced());
 }
 
 int main(int argc, char **argv) {
