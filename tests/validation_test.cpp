@@ -26,7 +26,7 @@ TEST(ConcurrencyTest, BasicTest) {
   AVLThreadSafe<point_t> instancia;
 
   for (std::size_t proc_idx = 0; proc_idx < processor_count; proc_idx++) {
-    thread_pool[proc_idx] = std::thread([&] {
+    thread_pool[proc_idx] = std::thread([&, proc_idx] {
       std::size_t chunk = num_points / processor_count;
 
       for (std::size_t item_idx = proc_idx * chunk;
