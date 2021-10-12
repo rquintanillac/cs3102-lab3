@@ -29,8 +29,10 @@ TEST(ConcurrencyTest, BasicTest) {
     thread_pool[proc_idx] = std::thread([&, proc_idx] {
       std::size_t chunk = num_points / processor_count;
 
+      std::size_t upper = proc_idx == processor_count - 1 ? num_points : (proc_idx + 1) * chunk;
+
       for (std::size_t item_idx = proc_idx * chunk;
-           item_idx < (proc_idx + 1) * chunk; item_idx++) {
+           item_idx < upper; item_idx++) {
         EXPECT_TRUE(instancia.insert(points[item_idx]));
       }
     });
